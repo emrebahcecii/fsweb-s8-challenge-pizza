@@ -1,0 +1,124 @@
+.order-wrapper {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+}
+
+.order-header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.order-header p {
+  margin: 0.5rem 0 0;
+  font-size: 14px;
+}
+
+.order-header span {
+  color: yellow;
+}
+
+.order-container h2 {
+  margin-top: 2rem;
+}
+
+.rating {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+.desc {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.options label,
+.checkbox-group label {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+
+.form-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quantity button {
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  background: #f4c900;
+  border: none;
+  cursor: pointer;
+}
+
+.summary {
+  text-align: right;
+}
+
+.summary p {
+  margin: 0.2rem 0;
+}
+
+.summary span {
+  font-weight: bold;
+}
+
+.submit-btn {
+  margin-top: 0.5rem;
+  padding: 0.7rem 2rem;
+  background-color: #f4c900;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: fit-content;
+}
+.their {
+  display: flex;
+  gap: 14rem;
+  align-items: flex-start;
+}
+.hamur {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.bold {
+  font-weight: bold;
+}
+.summary {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

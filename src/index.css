@@ -1,52 +1,53 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #213547;
-  background-color: #ffffff;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+#root {
+  width: 100%;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+.content {
+  height: 100vh;
 }
-a:hover {
-  color: #747bff;
-}
-
-body {
+* {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@media (max-width: 500px) {
+  .main-header {
+    height: 100vh;
+  }
+  .nav-items {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .nav-items a {
+    width: 40%;
+    gap: 5px;
+  }
+  .include-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .nav a {
+    width: 35%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button a {
+  text-decoration: none;
+  color: red;
 }
