@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PizzaOrderPage from "./components/PizzaOrderPage";
 import SuccessPage from "./components/SuccessPage";
@@ -9,6 +10,7 @@ import Footer from "./components/footer/footer";
 import "./App.css";
 
 function App() {
+  const [orderData, setOrderData] = useState(null);
   return (
     <Router>
       <Routes>
@@ -22,11 +24,16 @@ function App() {
             </>
           }
         />
-        <Route path="/order" element={<PizzaOrderPage />} />
-        <Route path="/success" element={<SuccessPage />} />
+        <Route
+          path="/order"
+          element={<PizzaOrderPage setOrderData={setOrderData} />}
+        />
+        <Route
+          path="/success"
+          element={<SuccessPage orderData={orderData} />}
+        />
       </Routes>
     </Router>
   );
 }
-
 export default App;

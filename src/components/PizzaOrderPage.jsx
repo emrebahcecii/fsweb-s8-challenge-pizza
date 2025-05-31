@@ -3,23 +3,19 @@ import Headertop from "./headertop/headertop";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function PizzaOrderPage() {
+function PizzaOrderPage({ setOrderData }) {
   const navigate = useNavigate();
+
   const [size, setSize] = useState("");
   const [dough, setDough] = useState("");
   const [malzemeler, setMalzemeler] = useState([]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/success", {
-      state: { size, dough, malzemeler, ingredientCost, totalCost },
-    });
-  };
-
   const [count, setCount] = useState(1);
 
   const BASE_PRICE = 85.5;
   const INGREDIENT_PRICE = 5;
+
+  const ingredientCost = malzemeler.length * INGREDIENT_PRICE;
+  const totalCost = (BASE_PRICE + ingredientCost) * count;
 
   const increment = () => setCount(count + 1);
   const decrement = () => count > 1 && setCount(count - 1);
@@ -33,8 +29,18 @@ function PizzaOrderPage() {
     }
   };
 
-  const ingredientCost = malzemeler.length * INGREDIENT_PRICE * count;
-  const totalCost = BASE_PRICE * count + ingredientCost;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setOrderData({
+      size,
+      dough,
+      malzemeler,
+      count,
+      ingredientCost,
+      totalCost,
+    });
+    navigate("/success");
+  };
 
   return (
     <>
