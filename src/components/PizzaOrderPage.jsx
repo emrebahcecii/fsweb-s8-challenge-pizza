@@ -5,14 +5,18 @@ import { useNavigate } from "react-router-dom";
 
 function PizzaOrderPage() {
   const navigate = useNavigate();
+  const [size, setSize] = useState("");
+  const [dough, setDough] = useState("");
+  const [malzemeler, setMalzemeler] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/success");
+    navigate("/success", {
+      state: { size, dough, malzemeler, ingredientCost, totalCost },
+    });
   };
 
   const [count, setCount] = useState(1);
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   const BASE_PRICE = 85.5;
   const INGREDIENT_PRICE = 5;
@@ -23,15 +27,13 @@ function PizzaOrderPage() {
   const handleIngredientChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
-      setSelectedIngredients([...selectedIngredients, value]);
+      setMalzemeler([...malzemeler, value]);
     } else {
-      setSelectedIngredients(
-        selectedIngredients.filter((item) => item !== value)
-      );
+      setMalzemeler(malzemeler.filter((item) => item !== value));
     }
   };
 
-  const ingredientCost = selectedIngredients.length * INGREDIENT_PRICE * count;
+  const ingredientCost = malzemeler.length * INGREDIENT_PRICE * count;
   const totalCost = BASE_PRICE * count + ingredientCost;
 
   return (
@@ -59,24 +61,42 @@ function PizzaOrderPage() {
                 <label>Boyut Seç</label>
                 <div className="options">
                   <label>
-                    <input type="radio" name="size" /> Küçük
+                    <input
+                      onChange={(e) => setSize(e.target.value)}
+                      type="radio"
+                      name="size"
+                      value="Küçük"
+                    />{" "}
+                    Küçük
                   </label>
                   <label>
-                    <input type="radio" name="size" /> Orta
+                    <input
+                      onChange={(e) => setSize(e.target.value)}
+                      type="radio"
+                      name="size"
+                      value="Orta"
+                    />{" "}
+                    Orta
                   </label>
                   <label>
-                    <input type="radio" name="size" /> Büyük
+                    <input
+                      onChange={(e) => setSize(e.target.value)}
+                      type="radio"
+                      name="size"
+                      value="Büyük"
+                    />{" "}
+                    Büyük
                   </label>
                 </div>
               </div>
 
               <div className="form-group hamur">
                 <label>Hamur Seç</label>
-                <select>
+                <select onChange={(e) => setDough(e.target.value)}>
                   <option value="">Hamur Kalınlığı</option>
-                  <option value="">İnce</option>
-                  <option value="">Normal</option>
-                  <option value="">Kalın</option>
+                  <option value="İnce">İnce</option>
+                  <option value="Normal">Normal</option>
+                  <option value="Kalın">Kalın</option>
                 </select>
               </div>
             </div>

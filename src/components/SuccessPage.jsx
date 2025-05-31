@@ -2,8 +2,13 @@ import React from "react";
 import Headertop from "./headertop/headertop";
 import "./SuccessPage.css";
 import Footer from "./footer/footer";
+import { useLocation } from "react-router-dom";
 
 function SuccessPage() {
+  const location = useLocation();
+  const { size, dough, malzemeler, ingredientCost, totalCost } =
+    location.state || {};
+
   return (
     <div className="fullContent">
       <div className="contentPage">
@@ -12,6 +17,24 @@ function SuccessPage() {
           <p className="write">fırsatı kaçırma</p>
           <h1>SİPARİŞ ALINDI</h1>
           <p>Position Absolute Acı Pizza</p>
+          <p>Seçilen Boyut: {size}</p>
+          <p>Hamur Kalınlığı: {dough}</p>
+
+          <p>
+            <strong>Seçilen Malzemeler:</strong>{" "}
+            {malzemeler && malzemeler.length > 0
+              ? malzemeler.join(", ")
+              : "Malzeme seçilmedi"}
+          </p>
+          <div className="bordertp">
+            <h1>Sipariş Toplamı</h1>
+            <p>
+              Seçimler: <span>{ingredientCost?.toFixed(2)}₺</span>
+            </p>
+            <p>
+              Toplam: <span>{totalCost?.toFixed(2)}₺</span>
+            </p>
+          </div>
         </div>
       </div>
 

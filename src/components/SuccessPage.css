@@ -12,7 +12,7 @@ body {
 }
 .contentPage {
   background-color: #ce2829;
-  height: 85vh;
+  height: 89vh;
 }
 .contentdr {
   display: flex;
@@ -21,4 +21,9 @@ body {
   max-width: 500px;
   margin: 0 auto;
   gap: 2rem;
+}
+.bordertp {
+  border: 1px solid white;
+  padding: 3rem;
+  border-radius: 1rem;
 }
