@@ -10,12 +10,13 @@ function PizzaOrderPage({ setOrderData }) {
   const [dough, setDough] = useState("");
   const [malzemeler, setMalzemeler] = useState([]);
   const [count, setCount] = useState(1);
+  const [error, setError] = useState("");
 
   const BASE_PRICE = 85.5;
   const INGREDIENT_PRICE = 5;
 
   const ingredientCost = malzemeler.length * INGREDIENT_PRICE;
-  const totalCost = (BASE_PRICE + ingredientCost) * count;
+  const totalCost = BASE_PRICE + ingredientCost;
 
   const increment = () => setCount(count + 1);
   const decrement = () => count > 1 && setCount(count - 1);
@@ -23,22 +24,39 @@ function PizzaOrderPage({ setOrderData }) {
   const handleIngredientChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
-      setMalzemeler([...malzemeler, value]);
+      if (malzemeler.length < 10) {
+        setMalzemeler([...malzemeler, value]);
+        setError("");
+      } else {
+        setError("En fazla 10 malzeme seçebilirsiniz.");
+      }
     } else {
       setMalzemeler(malzemeler.filter((item) => item !== value));
+      setError("");
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (malzemeler.length < 4) {
+      setError("Lütfen en az 4 malzeme seçin.");
+      return;
+    }
+
+    if (malzemeler.length > 10) {
+      setError("En fazla 10 malzeme seçebilirsiniz.");
+      return;
+    }
+
     setOrderData({
       size,
       dough,
       malzemeler,
-      count,
       ingredientCost,
       totalCost,
     });
+
     navigate("/success");
   };
 
@@ -147,6 +165,7 @@ function PizzaOrderPage({ setOrderData }) {
                 placeholder="Siparişine eklemek istediğin bir not var mı?"
               />
             </div>
+            {error && <p className="error">{error}</p>}
 
             <div className="form-bottom">
               <div className="quantity">
@@ -166,6 +185,7 @@ function PizzaOrderPage({ setOrderData }) {
                 <p>
                   Toplam: <span>{totalCost.toFixed(2)}</span>
                 </p>
+
                 <button
                   onClick={handleSubmit}
                   type="submit"

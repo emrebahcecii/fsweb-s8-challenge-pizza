@@ -2,6 +2,7 @@ import React from "react";
 import Headertop from "./headertop/headertop";
 import "./SuccessPage.css";
 import Footer from "./footer/footer";
+import { useLocation } from "react-router-dom";
 
 function SuccessPage({ orderData }) {
   const { size, dough, malzemeler, ingredientCost, totalCost } =
